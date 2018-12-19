@@ -1,4 +1,6 @@
-class Solution {
+#include solution.h
+
+class TwoSum {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         for (int i = 0; i < nums.size(); i++)
