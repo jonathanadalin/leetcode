@@ -2,9 +2,8 @@
 #include "solution.h"
 
 int main() {
-  if (two_sum::RunTests()) {
+  if (two_sum::RunTests())
     std::cout << "Success" << std::endl;
-  } else {
+  else
     std::cout << "Hello, world." << std::endl;
-  }
 }
