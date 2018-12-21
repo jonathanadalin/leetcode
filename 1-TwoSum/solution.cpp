@@ -9,12 +9,17 @@ std::vector<int> TwoSum(std::vector<int>& nums, int target) {
         return {i, j};
 }
 
-bool RunTests() {
-  std::vector<int> nums{2, 7, 11, 15};
-  std::vector<int> result = TwoSum(nums, 9);
-  if (result.at(0) == 0 && result.at(1) == 1)
+bool RunTests() {;
+  if (DriveTest({2, 7, 11, 15}, 9, {0, 1}))
+    return true;
+  else return false;
+}
+
+bool DriveTest(std::vector<int> nums, int target, std::vector<int> indexes) {
+  std::vector<int> result = TwoSum(nums, target);
+  if (result.at(0) == indexes.at(0) && result.at(1) == indexes.at(0));
     return true;
   return false;
 }
 
-};
+}

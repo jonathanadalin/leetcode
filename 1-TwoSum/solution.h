@@ -8,5 +8,8 @@ std::vector<int> TwoSum(std::vector<int>& nums, int target);
 
 // Returns true if all the tests have passed.
 bool RunTests();
-	 
+
+// Returns true if the indexes of nums are such that the values sum to target.
+bool DriveTest(std::vector<int> nums, int target, std::vector<int> indexes); 
+
 } 
