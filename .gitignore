@@ -1,6 +1,7 @@
 
 # Files being edited in vim.
 *.swp
+*.swo
 
 # Compiled source
 *.out
