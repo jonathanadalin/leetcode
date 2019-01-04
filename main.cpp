@@ -1,5 +1,5 @@
 #include <iostream>
-#include "solution.h"
+#include "1-TwoSum/solution.h"
 
 int main() {
   if (two_sum::RunTests())
