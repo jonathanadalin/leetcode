@@ -3,10 +3,15 @@
 
 namespace two_sum {
 
-class TwoSum : Problem {
+class TwoSum : public Problem {
 
  public:
   
+  TwoSum() {
+    this->set_name("Two Sum");
+    this->set_num(1);
+  }
+
   // Returns true if all the tests have passed.
   bool RunTests();
 

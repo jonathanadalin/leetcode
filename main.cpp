@@ -2,9 +2,15 @@
 #include "1-TwoSum/solution.h"
 
 int main() {
-  two_sum::TwoSum* test = new two_sum::TwoSum();
-  if (test->RunTests())
-    std::cout << "Success" << std::endl;
-  else
-    std::cout << "Hello, world." << std::endl;
+  std::vector<Problem*> problems;
+  // TODO Fix slicing
+  problems.push_back(new two_sum::TwoSum());
+  for (Problem* problem : problems) {
+    std::cout << "Problem # " << problem->get_num() << ": "
+                              << problem->get_name() << " - ";
+    if (problem->RunTests())
+      std::cout << "PASS" << std::endl;
+    else
+      std::cout << "FAIL" << std::endl;
+  }
 }

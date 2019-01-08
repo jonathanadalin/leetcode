@@ -18,7 +18,8 @@ std::vector<int> TwoSum::ReturnIndices(std::vector<int>& nums, int target) {
         return {i, j};
 }
 
-bool TwoSum::DriveTest(std::vector<int> nums, int target, std::vector<int> indexes) {
+bool TwoSum::DriveTest(std::vector<int> nums, int target,
+                       std::vector<int> indexes) {
   std::vector<int> result = ReturnIndices(nums, target);
   if (result.at(0) == indexes.at(0) && result.at(1) == indexes.at(1))
     return true;
