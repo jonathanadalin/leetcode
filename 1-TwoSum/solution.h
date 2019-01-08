@@ -10,11 +10,11 @@ class TwoSum : public Problem {
   TwoSum() {
     this->set_name("Two Sum");
     this->set_num(1);
-    this->set_status(RunTests());
+    this->set_status(TestsPass());
   }
 
   // Returns true if all the tests have passed.
-  bool RunTests();
+  bool TestsPass();
 
  private:
 

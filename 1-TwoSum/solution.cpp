@@ -2,7 +2,7 @@
 
 namespace two_sum {
 
-bool TwoSum::RunTests() {
+bool TwoSum::TestsPass() {
   if (DriveTest({2, 7, 11, 15}, 9, {0, 1}) &&
       DriveTest({1, 2, 3, 8}, 10, {1, 3}) &&
       DriveTest({0, 10}, 10, {0, 1}) &&

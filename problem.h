@@ -4,7 +4,7 @@ class Problem {
 
  public:
 
-  bool RunTests() { return false; }
+  bool TestsPass() { return false; }
   void set_name(std::string name) { this->name = name; }
   void set_num(int number) {this->number = number; }
   void set_status(bool status) {this->status = status; }
