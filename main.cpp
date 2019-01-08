@@ -8,7 +8,7 @@ int main() {
   for (Problem* problem : problems) {
     std::cout << "Problem # " << problem->get_num() << ": "
                               << problem->get_name() << " - ";
-    if (problem->RunTests())
+    if (problem->get_status())
       std::cout << "PASS" << std::endl;
     else
       std::cout << "FAIL" << std::endl;
