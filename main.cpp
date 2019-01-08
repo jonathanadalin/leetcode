@@ -2,7 +2,8 @@
 #include "1-TwoSum/solution.h"
 
 int main() {
-  if (two_sum::RunTests())
+  two_sum::TwoSum* test = new two_sum::TwoSum();
+  if (test->RunTests())
     std::cout << "Success" << std::endl;
   else
     std::cout << "Hello, world." << std::endl;
