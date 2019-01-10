@@ -5,4 +5,4 @@
 *.swn
 
 # Compiled source
-*.out
+bin/*
