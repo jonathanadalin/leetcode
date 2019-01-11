@@ -1,3 +1,6 @@
+#ifndef TWO_SUM_H_
+#define TWO_SUM_H_
+
 #include "../problem.h"
 #include <vector>
 
@@ -27,4 +30,6 @@ class TwoSum : public Problem {
 
 };
 
-} 
+}
+
+#endif  // TWO_SUM_H_ 

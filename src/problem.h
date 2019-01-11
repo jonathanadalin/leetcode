@@ -1,3 +1,6 @@
+#ifndef PROBLEM_H_
+#define PROBLEM_H_
+
 #include <string>
 
 class Problem {
@@ -19,3 +22,5 @@ class Problem {
   bool status;
 
 };
+
+#endif  // PROBLEM_H_
