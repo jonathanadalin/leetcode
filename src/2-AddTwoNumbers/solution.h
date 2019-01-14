@@ -21,12 +21,18 @@ class AddTwoNum : public Problem {
   bool TestsPass();
 
  private:
- 
+
   // Drives a single instance of the test.
-  bool DriveTest(ListNode* l, std::vector<int> nums);
+  bool DriveTest(ListNode* l1, ListNode* l2, int target);
+
+  // Converts an integer to a vector of integers ie. 123 -> {1,2,3}
+  std::vector<int> ConvertToVector(int num);
+
+  // Verifies if the ListNode is equivalent to the target integer.
+  bool CheckResult(ListNode* l, int target);
   
   // Returns a linked list of the sum of l1 and l2.
-  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2, int last_carry);
+  ListNode* AddTwoNumbers(ListNode* l1, ListNode* l2, int last_carry = 0);
 
 };
 
