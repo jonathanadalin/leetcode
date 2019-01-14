@@ -2,6 +2,8 @@
 #define ADD_TWO_NUM_H_
 
 #include "../problem.h"
+#include "list_node.h"
+#include <vector>
 
 namespace add_two_num {
 
@@ -21,7 +23,10 @@ class AddTwoNum : public Problem {
  private:
  
   // Drives a single instance of the test.
-  bool DriveTest(); 
+  bool DriveTest(ListNode* l, std::vector<int> nums);
+  
+  // Returns a linked list of the sum of l1 and l2.
+  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2, int last_carry);
 
 };
 
