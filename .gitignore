@@ -1,8 +1,11 @@
 
-# Files being edited in vim.
+# Files being edited in vim
 *.swp
 *.swo
 *.swn
+
+# VS Code stuff
+*.vscode
 
 # Compiled source
 bin/*
