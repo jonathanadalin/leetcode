@@ -13,20 +13,20 @@ public:
             num_binary_digits = floor(log(y) / log(2)) + 1;
         }
         int i = num_binary_digits - 1;
-        int n;
+        int n = pow(2, i);
         while (i >= 0) {
-            n = pow(2, i);
             if (x - n >= 0 && y- n >= 0) {
                 x -= n;
                 y -= n;
-            } else if (x - n >= 0 && y - n < 0) {
+            } else if (x - n >= 0) {
                 count++;
                 x -= n;
-            } else if (y - n >= 0 && x - n < 0){
+            } else if (y - n >= 0) {
                 count++;
                 y -= n;
             }
             i--;
+            n /= 2;
         }
         return count;
     }
