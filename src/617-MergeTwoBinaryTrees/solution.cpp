@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // Linear time: Traversing the intersection of t1 and t2 nodes.
     TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
         if (t1 != NULL && t2 != NULL) {
             TreeNode* t = new TreeNode(t1->val + t2->val);
