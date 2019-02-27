@@ -2,6 +2,7 @@
 
 class Solution {
 public:
+    // O(nums.size())
     int singleNumber(vector<int>& nums) {
         std::map<int, bool> map;
         int sum = 0;     
