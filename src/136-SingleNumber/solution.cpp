@@ -2,20 +2,12 @@
 
 class Solution {
 public:
-    // O(nums.size())
     int singleNumber(vector<int>& nums) {
-        std::map<int, bool> map;
-        int sum = 0;     
-        for (const int &i : nums) {
-            if (map[i]) {
-                sum -= i;  // The value is repeated
-            }
-            else {
-                map.erase(i);  // Checking its value in the map creates it.
-                map.insert(std::pair(i, true));
-                sum += i;
-            }
+        // Per problem description, <nums> must contain a single value.
+        int a = nums[0];
+        for (int i = 1; i < nums.size(); i++) {
+            a ^= nums[i];
         }
-        return sum;
+        return a;
     }
 };
