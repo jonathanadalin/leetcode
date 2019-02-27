@@ -10,6 +10,7 @@
 
 class Solution {
 public:
+    // O(n) since we're going through every node
     TreeNode* invertTree(TreeNode* root) {
         if (root == NULL) {
             return NULL;
