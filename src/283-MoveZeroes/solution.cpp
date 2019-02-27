@@ -3,6 +3,7 @@
 
 class Solution {
 public:
+    // O(n) since our indexes span the size of <nums> once each.
     void moveZeroes(vector<int>& nums) {
         int non_zero_index = 0;
         int all_elem_index = 0;
