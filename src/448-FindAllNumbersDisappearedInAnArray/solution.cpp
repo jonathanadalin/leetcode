@@ -1,7 +1,10 @@
 class Solution {
 public:
 
+    // O(n)
     vector<int> findDisappearedNumbers(vector<int>& nums) {
+        
+        // O(n)
         int j;
         for (int i = 0; i < nums.size(); i++) {
             j = abs(nums[i]) - 1;
@@ -9,6 +12,8 @@ public:
                 nums[j] = -nums[j];
             }
         }
+
+        // O(n)
         vector<int> v;
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] > 0) {
