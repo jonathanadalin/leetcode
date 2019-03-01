@@ -9,6 +9,7 @@
 
 class Solution {
 public:
+    // O(n)
     ListNode* reverseList(ListNode* head) {
         if (head == NULL) {
             return NULL;
