@@ -14,10 +14,8 @@ public:
             return NULL;
         }
         ListNode* prev;
-        ListNode* curr;
-        ListNode* next;
-        curr = head;
-        next = curr->next;
+        ListNode* curr = head;
+        ListNode* next = next = curr->next;
         curr->next = NULL;
         while (next != NULL) {
             prev = curr;
