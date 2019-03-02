@@ -25,7 +25,10 @@ public:
         if (root == NULL) {
             return 0;
         }
-        getHeights(root);
+        getHeights(root);  // O(n)
+        
+        // O(n^n).. Really bad!
+        // We can try to use dynamic programming here too since lots of redundant cases.
         if (root->left != NULL && root->right != NULL) {
             return std::max(root->left->val + root->right->val,
                             std::max(diameterOfBinaryTree(root->left),
@@ -38,5 +41,5 @@ public:
             return 0; 
         }
     }
-
+    
 };
