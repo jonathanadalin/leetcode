@@ -2,6 +2,7 @@
 
 class Solution {
 public:
+    // O(n)
     int majorityElement(vector<int>& nums) {
         std::map<int, int> m;
         for (int i = 0; i < nums.size(); i++) {
