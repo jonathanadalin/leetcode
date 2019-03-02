@@ -21,6 +21,7 @@ public:
 
     }
     
+    // O(n) - We only traverse each node once.
     TreeNode* convertBST(TreeNode* root) { 
         if (root == NULL) {
             return NULL;
