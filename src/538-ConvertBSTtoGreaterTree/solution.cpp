@@ -18,7 +18,6 @@ public:
             sum = node->val;
             traverseAndUpdate(node->left, sum);
         }
-
     }
     
     // O(n) - We only traverse each node once.
