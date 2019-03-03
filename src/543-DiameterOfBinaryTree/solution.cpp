@@ -11,35 +11,24 @@
 class Solution {
 public:
     
-    int getHeights(TreeNode* node) {
+    int max_dist;  // Keeps track of the max distance, which is the sum
+                   // of heights from left and right branches at a node.
+    
+    int traverseAndCalcHeights(TreeNode* node) {
         if (node == NULL) {
             return 0;
         } else {
-            node->val = 1 + std::max(getHeights(node->left),
-                                     getHeights(node->right));
+            int l_height = traverseAndCalcHeights(node->left);
+            int r_height = traverseAndCalcHeights(node->right);
+            max_dist = std::max(max_dist, l_height + r_height);
+            return 1 + std::max(l_height, r_height);
         }
-        return node->val;
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
-        if (root == NULL) {
-            return 0;
-        }
-        getHeights(root);  // O(n)
-        
-        // O(n^n).. Really bad!
-        // We can try to use dynamic programming here too since lots of redundant cases.
-        if (root->left != NULL && root->right != NULL) {
-            return std::max(root->left->val + root->right->val,
-                            std::max(diameterOfBinaryTree(root->left),
-                                     diameterOfBinaryTree(root->right)));
-        } else if (root->left != NULL) {
-            return std::max(diameterOfBinaryTree(root->left), root->left->val);
-        } else if (root->right != NULL) {
-            return std::max(diameterOfBinaryTree(root->right), root->right->val);
-        } else {  // No children
-            return 0; 
-        }
+        max_dist = 0;
+        traverseAndCalcHeights(root);  // Updates <max_dist>.
+        return max_dist;
     }
     
 };
