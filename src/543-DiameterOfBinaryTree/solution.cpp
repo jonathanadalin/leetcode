@@ -14,6 +14,7 @@ public:
     int max_dist;  // Keeps track of the max distance, which is the sum
                    // of heights from left and right branches at a node.
     
+    // O(n) : We're going through each node once while updating <max_dist>
     int traverseAndCalcHeights(TreeNode* node) {
         if (node == NULL) {
             return 0;
