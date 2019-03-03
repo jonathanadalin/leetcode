@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // O(n) - Only go through vector once
     int maxProfit(vector<int>& prices) {     
         if (prices.size() < 2) {
             return 0;
