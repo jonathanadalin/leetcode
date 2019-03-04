@@ -10,14 +10,16 @@
 
 class Solution {
 public:
+    // O(n^2)
     int pathSum(TreeNode* root, int sum) {
         if (root == NULL) {
             return 0;
         }
-        return pathSumFrom(root, sum)
-               + pathSum(root->left, sum)
+        return pathSumFrom(root, sum)  // O(n)
+               + pathSum(root->left, sum) 
                + pathSum(root->right, sum);
     }
+    // O(n)
     int pathSumFrom(TreeNode* node, int sum) {
         if (node == NULL) {
             return 0;
