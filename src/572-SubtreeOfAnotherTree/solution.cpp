@@ -11,6 +11,9 @@
 class Solution {
 public:
     
+    // O(n*m) : We perform isSameTree on each node of s.
+    // n is the size of s
+    // m is the size of t
     bool isSubtree(TreeNode* s, TreeNode* t) {
         if (s == NULL) {
             return false;
