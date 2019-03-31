@@ -6,7 +6,7 @@ public:
            if (m.find(p[i]) != m.end()) {
                 m[p[i]]++;
            } else {
-                m.insert(std::pair<char, int>(p[i],0));
+                m.insert(std::pair<char, int>(p[i], 0));
            }
        } 
     }
@@ -15,15 +15,6 @@ public:
         for (map<char, int>::iterator it = pm.begin(); it != pm.end(); it++) {
             wm.insert(pair<char, int>((*it).first,(*it).second));
         }
-    }
-    
-    bool contains(map<char, int> &m, char c) {
-        for (map<char, int>::iterator it = m.begin(); it != m.end(); it++) {
-            if (c == (*it).first) {
-                return true;
-            }
-        }
-        return false;
     }
     
     vector<int> findAnagrams(string s, string p) {
@@ -35,8 +26,9 @@ public:
         map<char, int> working_map;
         bool last_set_pass = false;
         bool skip_expensive_op = false;
-        populateMap(populated_map, p);
+        populateMap(populated_map, p);  // O(p.length())
         
+        // O(s.length() * p.length()) at worst
         for (int i = 0; i < s.length() - p.length() + 1; i++) {
                 
             // We don't need to check all the whole string if the last window
@@ -53,8 +45,8 @@ public:
             
             if (!skip_expensive_op) {
                 copyMap(populated_map, working_map);
-                // O(p.length()), which is expensive if <p> is long.
-                for (int j = i; j < p.length() + i; j++) {
+                // O(p.length())
+                for (int j = i; j < i + p.length(); j++) {
                     
                     if (working_map.find(s[j]) != working_map.end()) {
                         if (working_map[s[j]] > 0) {
@@ -65,7 +57,7 @@ public:
                     } else {
                         // If the element isn't part of <p>, then jump so that
                         // element is no longer scanned.
-                        if (!contains(populated_map, s[j])) {
+                        if (populated_map.find(s[j]) == populated_map.end()) {
                             i = j; 
                             break;
                         }       
@@ -77,10 +69,9 @@ public:
                 } else {
                     last_set_pass = false;
                 }
+                working_map.clear();
             }
-            
             skip_expensive_op = false;
-            working_map.clear();
         }
         return v;
     }
