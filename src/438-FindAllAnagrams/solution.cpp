@@ -31,6 +31,7 @@ public:
             
             // We don't need to check all the whole string if the last window passed.
             // We're good if the newest element is the same as the one we stopped looking at.
+            skip_expensive_op = false;
             if (last_set_pass) {
                 skip_expensive_op = true;
                 if (s[p.length() + i - 1] == s[i - 1]) {
@@ -58,7 +59,6 @@ public:
                     last_set_pass = true;
                 } else {
                     last_set_pass = false;
-                    skip_expensive_op = false;
                 }
             }
 
