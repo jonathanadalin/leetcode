@@ -32,14 +32,16 @@ public:
             return v;
         }
         map<char, int> populated_map;
-        populateMap(populated_map, p);
         map<char, int> working_map;
         bool last_set_pass = false;
         bool skip_expensive_op = false;
+        populateMap(populated_map, p);
+        
         for (int i = 0; i < s.length() - p.length() + 1; i++) {
                 
-            // We don't need to check all the whole string if the last window passed.
-            // We're good if the newest element is the same as the one we stopped looking at.
+            // We don't need to check all the whole string if the last window
+            // passed. We're good if the newest element is the same as the one
+            // we stopped looking at.
             if (last_set_pass) {
                 skip_expensive_op = true;
                 if (s[p.length() + i - 1] == s[i - 1]) {
@@ -50,19 +52,9 @@ public:
             }
             
             if (!skip_expensive_op) {
-                
-                // O(p.length()), which is expensive if <p> is long.
                 copyMap(populated_map, working_map);
-                
+                // O(p.length()), which is expensive if <p> is long.
                 for (int j = i; j < p.length() + i; j++) {
-                    
-                    // If the element isn't part of <p>, then jump so that element is
-                    // no longer scanned.
-                    if (!contains(populated_map, s[j])) {
-                        last_set_pass = false;
-                        i = j; 
-                        break;
-                    }
                     
                     if (working_map.find(s[j]) != working_map.end()) {
                         if (working_map[s[j]] > 0) {
@@ -70,9 +62,15 @@ public:
                         } else {
                             working_map.erase(s[j]);
                         }        
+                    } else {
+                        // If the element isn't part of <p>, then jump so that
+                        // element is no longer scanned.
+                        if (!contains(populated_map, s[j])) {
+                            i = j; 
+                            break;
+                        }       
                     }
                 }
-
                 if (working_map.size() == 0) {
                     v.push_back(i);
                     last_set_pass = true;
