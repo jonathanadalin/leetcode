@@ -3,20 +3,19 @@ public:
     /** initialize your data structure here. */
     
     std::vector<int> v;
-    int min;
-    bool min_known;
+    std::stack<int> min;
     
     MinStack() {
-        min_known = false;
+
     }
     
     // O(1)
     void push(int x) {
         if (v.size() == 0) {
-            min = x;
+            min.push(x);
         } else {
-            if (x < min) {
-                min = x;
+            if (x <= min.top()) {
+                min.push(x);
             }
         }
         v.push_back(x);
@@ -24,8 +23,8 @@ public:
     
     // O(1)
     void pop() {
-        if (min == v[v.size() - 1]) {
-            min_known = false;
+        if (min.top() == v[v.size() - 1]) {
+            min.pop();
         }
         v.erase(v.begin() + v.size() - 1);
     }
@@ -35,20 +34,9 @@ public:
         return v[v.size() - 1];
     }
     
-    // O(1) usually, worst case O(n)
+    // O(1)
     int getMin() {
-        if (!min_known) {
-            if (v.size() > 0) {
-                min = v[0];
-            }
-            for (int i = 1; i < v.size(); i++) {
-                if (v[i] < min) {
-                    min = v[i];
-                }
-            }
-            min_known = true;
-        }
-        return min;
+        return min.top();
     }
 };
 
