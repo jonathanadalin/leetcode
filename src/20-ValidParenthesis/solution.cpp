@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // O(s.length()): only go through <s> once
     bool isValid(string s) {
         stack<char> st;
         char* cstr = new char [s.length() + 1];
