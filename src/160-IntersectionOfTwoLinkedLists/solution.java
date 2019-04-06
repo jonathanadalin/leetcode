@@ -37,8 +37,8 @@ public class Solution {
             return null;
         }
         
-        int iA = vA.size() - 1;
-        int iB = vB.size() - 1;
+        int iA = vA.size() - 2;
+        int iB = vB.size() - 2;
         
         while (iA >= 0 && iB >= 0) {
             if (vA.get(iA) == vB.get(iB)) {
@@ -49,11 +49,7 @@ public class Solution {
             }
         }
         
-        ListNode intersectNode = headA;
-        for (int i = 0; i <= iA; i++) {
-            intersectNode = intersectNode.next;
-        }
+        return vA.get(iA + 1);
         
-        return intersectNode;
     }
 }
