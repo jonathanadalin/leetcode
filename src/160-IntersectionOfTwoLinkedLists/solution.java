@@ -19,21 +19,21 @@ public class Solution {
             return null;
         }
         
-        Vector<Integer> vA = new Vector<Integer>();
+        Vector<ListNode> vA = new Vector<ListNode>();
         ListNode nodeA = headA;
         while (nodeA != null) {
-            vA.add(nodeA.val);
+            vA.add(nodeA);
             nodeA = nodeA.next;
         }
         
-        Vector<Integer> vB = new Vector<Integer>();
+        Vector<ListNode> vB = new Vector<ListNode>();
         ListNode nodeB = headB;
         while (nodeB != null) {
-            vB.add(nodeB.val);
+            vB.add(nodeB);
             nodeB = nodeB.next;
         }
         
-        if (vA.get(vA.size() - 1).intValue() != vB.get(vB.size() - 1).intValue()) {
+        if (vA.get(vA.size() - 1) != vB.get(vB.size() - 1)) {
             return null;
         }
         
@@ -41,7 +41,7 @@ public class Solution {
         int iB = vB.size() - 1;
         
         while (iA >= 0 && iB >= 0) {
-            if (vA.get(iA).intValue() == vB.get(iB).intValue()) {
+            if (vA.get(iA) == vB.get(iB)) {
                 iA--;
                 iB--;
             } else {
