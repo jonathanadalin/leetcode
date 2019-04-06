@@ -14,8 +14,29 @@ import java.util.*;
 
 public class Solution {
     
-    // O(n)
+    // O(2n) at worst
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        
+        ListNode a = headA;
+        ListNode b = headB;
+        
+        // O(2n) at worst.
+        // We don't need to know the linked list length. On the second iteration,
+        // the pointers will intersect and we return that, or they never will and
+        // we will return null (a and b will both = null).
+        while (a != b) {
+            a = a == null? headB : a.next;
+            b = b == null? headA : b.next;
+        }
+        
+        return a;
+    }
+    
+    // O(n)
+    public ListNode getIntersectionNodeOld(ListNode headA, ListNode headB) {
         
         if (headA == null || headB == null) {
             return null;
