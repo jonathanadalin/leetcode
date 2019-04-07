@@ -3,11 +3,14 @@ import java.util.Arrays;
 class Solution {
     
     // O(nlog(n))
+    // Compare the <nums> with its sorted variant.
+    // Pointers from the start and end will indicate
+    // parts of <nums> that are already in the right spot.
+    // Everything within those pointers needs to be sorted.
     public int findUnsortedSubarray(int[] nums) {
         
-        // The array is already sorted.
         if (nums.length < 2) {
-            return 0;
+            return 0;  // The array is already sorted.
         }
         
         int[] sorted_nums = new int[nums.length];
