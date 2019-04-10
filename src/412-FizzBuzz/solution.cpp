@@ -2,6 +2,7 @@
 
 class Solution {
 public:
+    // O(n)
     vector<string> fizzBuzz(int n) {
         vector<std::string> v;
         for (int i = 1; i <= n; i++) {
