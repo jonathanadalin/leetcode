@@ -21,6 +21,5 @@ public:
                 node = node->next;
             }
         }
-        node = NULL;
     }
 };
