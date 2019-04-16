@@ -1,6 +1,7 @@
 class Solution {
 public:
     
+    // O(1)
     int toInt(char c) {
         switch (c) {
             case 'I': return 1; break;
@@ -14,6 +15,7 @@ public:
         }
     }
     
+    // O(s.length())
     int romanToInt(string s) {
         int sum = 0;
         int i;
