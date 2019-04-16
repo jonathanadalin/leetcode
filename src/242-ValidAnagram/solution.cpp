@@ -4,6 +4,7 @@ class Solution {
 public:
     
     bool contains(std::map<char, int> &m, char c) {
+        // O(size of m)
         for (std::map<char, int>::iterator it = m.begin(); it != m.end(); it++) {
             if (it->first == c) {
                 return true;
@@ -12,6 +13,7 @@ public:
         return false;
     }
     
+    // O(size of m * s.length() + size of m * s.length())
     bool isAnagram(string s, string t) {
         
         if (s.length() != t.length()) {
