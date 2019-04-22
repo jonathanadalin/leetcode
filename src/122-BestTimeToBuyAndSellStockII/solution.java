@@ -3,19 +3,11 @@ class Solution {
         if (prices.length < 2) {
             return 0;
         }
-        int i = 1;
-        int min = prices[0];
         int profit = 0;
-        while (i < prices.length - 1) {
-            if (prices[i] > prices[i - 1]) {
-                // Sell!
-                profit += prices[i] - min;
-                min = prices[i + 1];
-                i++;
-            } else {
-                min = prices[i];
+        for (int i = 0; i < prices.length - 1; ++i) {
+            if (prices[i + 1] > prices[i]) {
+                profit += (prices[i + 1] - prices[i]);
             }
-            i++;
         }
         return profit;
     }
