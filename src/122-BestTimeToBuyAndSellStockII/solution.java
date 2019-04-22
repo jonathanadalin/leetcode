@@ -1,4 +1,5 @@
 class Solution {
+    // O(n) - We iterate through prices once
     public int maxProfit(int[] prices) {
         if (prices.length < 2) {
             return 0;
