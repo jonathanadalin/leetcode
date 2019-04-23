@@ -9,6 +9,10 @@
  */
 
 class Solution {
+    
+    // O(n) - We need to place all the values of nums
+    //        into the BST.
+    
     public TreeNode sortedArrayToBST(int[] nums) {
         if (nums.length == 0) {
             return null;
