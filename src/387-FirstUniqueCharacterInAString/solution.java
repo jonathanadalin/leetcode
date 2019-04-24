@@ -1,5 +1,6 @@
 class Solution {
     
+    // O(2n) - Go through s twice at most.
     public int firstUniqChar(String s) {
         int[] freq = new int[26];  // 26 letters in alphabet.
         for (int i = 0; i < s.length(); i++) {
