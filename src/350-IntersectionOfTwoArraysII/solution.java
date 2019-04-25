@@ -1,6 +1,16 @@
 class Solution {
+    
     // O(n + m) - Go through both input arrays
     public int[] intersect(int[] nums1, int[] nums2) {
+        
+        if (nums1.length == 0 && nums2.length == 0) {
+            return nums1;
+        } else if (nums1.length == 0) {
+            return nums1;
+        } else if (nums2.length == 0) {
+            return nums2;
+        }
+        
         HashMap<Integer, Integer> hm = new HashMap();
         for (int i = 0; i < nums1.length; i++) {
             if (hm.containsKey(nums1[i])) {
@@ -9,6 +19,7 @@ class Solution {
                 hm.put(nums1[i], 1);
             }
         }
+        
         ArrayList<Integer> al = new ArrayList();
         for (int i = 0; i < nums2.length; i++) {
             int key = nums2[i];
@@ -19,10 +30,12 @@ class Solution {
                 }
             }
         }
+        
         int[] intersect_array = new int[al.size()];
         for (int i = 0; i < al.size(); i++) {
             intersect_array[i] = al.get(i);
         }
+        
         return intersect_array;
     }
 }
