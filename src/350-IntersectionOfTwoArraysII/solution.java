@@ -1,4 +1,5 @@
 class Solution {
+    // O(n + m) - Go through both input arrays
     public int[] intersect(int[] nums1, int[] nums2) {
         HashMap<Integer, Integer> hm = new HashMap();
         for (int i = 0; i < nums1.length; i++) {
