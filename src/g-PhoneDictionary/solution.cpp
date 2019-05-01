@@ -4,9 +4,11 @@
 #include <map>
 #include <unordered_set>
 
-class Cellphone {
+class Cellphone
+{
  public:
-  Cellphone() {
+  Cellphone()
+  {
     std::unordered_set<char> letters_for_2 {'A', 'B', 'C'};
     std::unordered_set<char> letters_for_3 {'D', 'E', 'F'};
     std::unordered_set<char> letters_for_4 {'G', 'H', 'I'};
@@ -28,7 +30,7 @@ class Cellphone {
   std::map< int, std::unordered_set<char> > map;
 };
 
-std::vector<std::string> getPermutations(const std::vector<int> &numbers,
+std::vector<std::string> GetPermutations(const std::vector<int> &numbers,
                                          const std::vector<std::string> &words)
 {
   Cellphone cp;
