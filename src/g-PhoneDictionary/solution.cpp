@@ -46,18 +46,17 @@ std::vector<std::string> GetMatchingPermutations(
   // We can eliminate words that don't match the input vector length.
   for (auto word_it = matches.begin(); word_it != matches.end(); ++word_it) {
     if ((*word_it).length() != numbers.size()) {
-      matches.erase(word_it);
+      word_it = matches.erase(word_it - 1);
     }
   }
 
   for (auto num : numbers) {
-    for (auto word_it = matches.begin(); word_it != matches.end();
-         ++word_it) {
+    for (auto word_it = matches.begin(); word_it != matches.end(); ++word_it) {
       if (i >= (*word_it).length()) {
-        matches.erase(word_it);
+        word_it = matches.erase(word_it) - 1;
       } else {
         if (!cp.MappingExists(num, (*word_it).at(i))) {
-          matches.erase(word_it);
+          word_it = matches.erase(word_it) - 1;
         }
       }
     }
@@ -66,12 +65,30 @@ std::vector<std::string> GetMatchingPermutations(
   return matches;
 }
 
+bool TestSolutionPasses(const std::vector<int> &numbers,
+                        const std::vector<std::string> &words,
+                        const std::vector<std::string> &expected_matches) {
+  std::vector<std::string> matches = GetMatchingPermutations(numbers, words);
+  return matches == expected_matches;
+}
+
 main() {
   std::vector<int> numbers {2,3,2};
   std::vector<std::string> words {"AEC", "WUT", "BAD", "OK", "AAAA"};
-  auto matching_permutations = GetMatchingPermutations(numbers, words);
-  for (auto word : matching_permutations) {
-    std::cout << word << " ";
+  std::vector<std::string> expected_matches {"AEC"};
+  if (TestSolutionPasses(numbers, words, expected_matches)) {
+    std::cout << "PASS" << std::endl;
+  } else {
+    std::cout << "FAIL" << std::endl;
+    std::cout << "Expected matches ";
+    for (auto word : expected_matches) {
+      std::cout << word << " ";
+    }
+    std::cout << std::endl << "Our matches      ";
+    std::vector<std::string> our_matches = GetMatchingPermutations(numbers, words);
+    for (auto word : our_matches) {
+      std::cout << word << " ";
+    }
+    std::cout << std::endl;
   }
-  std::cout << std::endl;
 }
