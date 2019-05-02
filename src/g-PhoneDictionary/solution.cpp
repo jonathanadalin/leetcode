@@ -37,30 +37,41 @@ class Cellphone {
   std::map< int, std::unordered_set<char> > map;
 };
 
-std::vector<std::string> GetPermutations(const std::vector<int> &numbers,
-                                         const std::vector<std::string> &words) {
+std::vector<std::string> GetMatchingPermutations(
+    const std::vector<int> &numbers, const std::vector<std::string> &words) {
   Cellphone cp;
-  std::vector<std::string> matching_words(words);
+  std::vector<std::string> matches(words);
   int i = 0;
+
+  // We can eliminate words that don't match the input vector length.
+  for (auto word_it = matches.begin(); word_it != matches.end(); ++word_it) {
+    if ((*word_it).length() != numbers.size()) {
+      matches.erase(word_it);
+    }
+  }
+
   for (auto num : numbers) {
-    for (auto it = words.begin(); it != words.end(); ++it) {
-      if (i > (*it).length() - 1) {
-        matching_words.erase(it);
+    for (auto word_it = matches.begin(); word_it != matches.end();
+         ++word_it) {
+      if (i >= (*word_it).length()) {
+        matches.erase(word_it);
       } else {
-        if (!cp.MappingExists(num, (*it).at(i))) {
-          matching_words.erase(it);
+        if (!cp.MappingExists(num, (*word_it).at(i))) {
+          matches.erase(word_it);
         }
       }
     }
+    i++;
   }
-  return matching_words;
+  return matches;
 }
 
 main() {
   std::vector<int> numbers {2,3,2};
   std::vector<std::string> words {"AEC", "WUT", "BAD", "OK", "AAAA"};
-  auto matching_permutations = GetPermutations(numbers, words);
+  auto matching_permutations = GetMatchingPermutations(numbers, words);
   for (auto word : matching_permutations) {
     std::cout << word << " ";
   }
+  std::cout << std::endl;
 }
