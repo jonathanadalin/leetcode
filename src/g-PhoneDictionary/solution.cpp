@@ -74,8 +74,8 @@ bool TestSolutionPasses(const std::vector<int> &numbers,
 
 main() {
   std::vector<int> numbers {2,3,2};
-  std::vector<std::string> words {"AEC", "WUT", "BAD", "OK", "AAAA"};
-  std::vector<std::string> expected_matches {"AEC"};
+  std::vector<std::string> words {"AEC", "WUT", "BAD", "OK", "AAAA", "CFC"};
+  std::vector<std::string> expected_matches {"AEC", "CFC"};
   if (TestSolutionPasses(numbers, words, expected_matches)) {
     std::cout << "PASS" << std::endl;
   } else {
