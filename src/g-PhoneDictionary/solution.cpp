@@ -24,6 +24,7 @@ class Cellphone {
     map.insert(std::make_pair(8, letters_for_8));
     map.insert(std::make_pair(9, letters_for_9));
   }
+  // O(1) - Finding in a map or set is constant time.
   bool MappingExists(int num, char c) {
     auto it = map.find(num);
     if (it == map.end()) {
@@ -37,12 +38,14 @@ class Cellphone {
   std::map< int, std::unordered_set<char> > map;
 };
 
+// O(n*w)
 std::vector<std::string> GetMatchingPermutations(
     const std::vector<int> &numbers, const std::vector<std::string> &words) {
   Cellphone cp;
   std::vector<std::string> matches(words);
   int i = 0;
 
+  // O(w)
   // We can eliminate words that don't match the input vector length.
   for (auto word_it = matches.begin(); word_it != matches.end(); ++word_it) {
     if ((*word_it).length() != numbers.size()) {
@@ -50,6 +53,7 @@ std::vector<std::string> GetMatchingPermutations(
     }
   }
 
+  // O(n*w)
   for (auto num : numbers) {
     for (auto word_it = matches.begin(); word_it != matches.end(); ++word_it) {
       if (i >= (*word_it).length()) {
@@ -85,7 +89,7 @@ main() {
       std::cout << word << " ";
     }
     std::cout << std::endl << "Our matches      ";
-    std::vector<std::string> our_matches = GetMatchingPermutations(numbers, words);
+    auto our_matches = GetMatchingPermutations(numbers, words);
     for (auto word : our_matches) {
       std::cout << word << " ";
     }
