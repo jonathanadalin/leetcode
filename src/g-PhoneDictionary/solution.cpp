@@ -41,12 +41,10 @@ class Cellphone {
 // O(n*w)
 std::vector<std::string> GetMatchingPermutations(
     const std::vector<int> &numbers, const std::vector<std::string> &words) {
-  Cellphone cp;
-  std::vector<std::string> matches(words);
-  int i = 0;
 
   // O(w)
   // We can eliminate words that don't match the input vector length.
+  std::vector<std::string> matches(words);
   for (auto word_it = matches.begin(); word_it != matches.end(); ++word_it) {
     if ((*word_it).length() != numbers.size()) {
       word_it = matches.erase(word_it) - 1;
@@ -54,6 +52,8 @@ std::vector<std::string> GetMatchingPermutations(
   }
 
   // O(n*w)
+  Cellphone cp;
+  int i = 0;
   for (auto num : numbers) {
     for (auto word_it = matches.begin(); word_it != matches.end(); ++word_it) {
       if (i >= (*word_it).length()) {
@@ -66,6 +66,7 @@ std::vector<std::string> GetMatchingPermutations(
     }
     i++;
   }
+  
   return matches;
 }
 
