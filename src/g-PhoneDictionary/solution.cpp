@@ -4,11 +4,9 @@
 #include <map>
 #include <unordered_set>
 
-class Cellphone
-{
+class Cellphone {
  public:
-  Cellphone()
-  {
+  Cellphone() {
     std::unordered_set<char> letters_for_2 {'A', 'B', 'C'};
     std::unordered_set<char> letters_for_3 {'D', 'E', 'F'};
     std::unordered_set<char> letters_for_4 {'G', 'H', 'I'};
@@ -26,18 +24,38 @@ class Cellphone
     map.insert(std::make_pair(8, letters_for_8));
     map.insert(std::make_pair(9, letters_for_9));
   }
+  bool MappingExists(int num, char c) {
+    auto it = map.find(num);
+    if (it == map.end()) {
+      return false;
+    } 
+    else {
+      return ((*it).second.find(c) != (*it).second.end());
+    }
+  }
  private:
   std::map< int, std::unordered_set<char> > map;
 };
 
 std::vector<std::string> GetPermutations(const std::vector<int> &numbers,
-                                         const std::vector<std::string> &words)
-{
+                                         const std::vector<std::string> &words) {
   Cellphone cp;
-  return words;
+  std::vector<std::string> matching_words(words);
+  int i = 0;
+  for (int num : numbers) {
+    for (auto it = words.begin(); it != words.end(); ++it) {
+      if (i > (*it).length() - 1) {
+        matching_words.erase(it);
+      } else {
+        if (!cp.MappingExists(num, (*it).at(i))) {
+          matching_words.erase(it);
+        }
+      }
+    }
+  }
+  return matching_words;
 }
 
-main()
-{
+main() {
   std::cout << "Hello, world." << std::endl;
 }
