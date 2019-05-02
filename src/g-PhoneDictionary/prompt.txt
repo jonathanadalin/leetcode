@@ -15,6 +15,6 @@ that are present in a dictionary.
 For example,
 
 Inputer sequence: 232
-Dictionary: AEC, WUT, BAD, PQR
+Dictionary: AEC, WUT, BAD, OK, AAAA, CFC
 
-Output: AEC
+Output: AEC CFC
