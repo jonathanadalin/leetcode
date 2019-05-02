@@ -49,7 +49,7 @@ std::vector<std::string> GetMatchingPermutations(
   // We can eliminate words that don't match the input vector length.
   for (auto word_it = matches.begin(); word_it != matches.end(); ++word_it) {
     if ((*word_it).length() != numbers.size()) {
-      word_it = matches.erase(word_it - 1);
+      word_it = matches.erase(word_it) - 1;
     }
   }
 
