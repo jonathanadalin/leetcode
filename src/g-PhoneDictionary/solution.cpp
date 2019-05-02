@@ -42,7 +42,7 @@ std::vector<std::string> GetPermutations(const std::vector<int> &numbers,
   Cellphone cp;
   std::vector<std::string> matching_words(words);
   int i = 0;
-  for (int num : numbers) {
+  for (auto num : numbers) {
     for (auto it = words.begin(); it != words.end(); ++it) {
       if (i > (*it).length() - 1) {
         matching_words.erase(it);
@@ -57,5 +57,10 @@ std::vector<std::string> GetPermutations(const std::vector<int> &numbers,
 }
 
 main() {
-  std::cout << "Hello, world." << std::endl;
+  std::vector<int> numbers {2,3,2};
+  std::vector<std::string> words {"AEC", "WUT", "BAD", "OK", "AAAA"};
+  auto matching_permutations = GetPermutations(numbers, words);
+  for (auto word : matching_permutations) {
+    std::cout << word << " ";
+  }
 }
