@@ -16,15 +16,14 @@ public:
         vector<int> v;
         stack<TreeNode*> s;
         while (root != NULL || !s.empty()) {
-            if (root != NULL) {
+            while (root != NULL) {
                 s.push(root);
                 root = root->left;     
-            } else {
-                root = s.top();  // Stack elements are not NULL.
-                s.pop();
-                v.push_back(root->val);
-                root = root->right;
             }
+            root = s.top();  // Stack elements are not NULL.
+            s.pop();
+            v.push_back(root->val);
+            root = root->right;
         }
         return v;
     }
