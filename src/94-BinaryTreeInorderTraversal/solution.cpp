@@ -11,7 +11,7 @@
 class Solution {
 public:
 
-    vector<int> v;
+    // O(n) - We go through the tree once, stack calls are O(1).
     vector<int> inorderTraversal_iter(TreeNode* root) {
         vector<int> v;
         stack<TreeNode*> s;
@@ -29,6 +29,7 @@ public:
         return v;
     }
 
+    // O(n) - We go through the tree once.
     vector<int> v;
     vector<int> inorderTraversal_recursive(TreeNode* root) {
         
