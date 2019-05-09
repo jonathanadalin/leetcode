@@ -1,18 +1,19 @@
 class Solution {
 public:
-
-    void generateCombinations(string s, int left, int right, vector<string> &v) {
-        if (left == 0 && right == 0) {
+    void generateCombinations(string s, int open, int close, vector<string> &v) {
+        if (open == 0 && close == 0) {
+            // There's no parenthesis left to add.
             v.push_back(s);
         }
-        if (left > 0) {
+        if (open > 0) {
             s.append("(");
-            generateCombinations(s, left - 1, right + 1, v);
+            generateCombinations(s, open - 1, close + 1, v);
+            // We need to reset the string before entering the next if statement.
             s = s.substr(0, s.length() - 1);
         }
-        if (right > 0) {
+        if (close > 0) {
             s.append(")");
-            generateCombinations(s, left, right - 1, v);
+            generateCombinations(s, open, close - 1, v);
         }
     }
     vector<string> generateParenthesis(int n) {
