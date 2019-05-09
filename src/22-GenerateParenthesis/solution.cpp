@@ -1,5 +1,27 @@
 class Solution {
 public:
+
+    void generateCombinations(string s, int left, int right, vector<string> &v) {
+        if (left == 0 && right == 0) {
+            v.push_back(s);
+        }
+        if (left > 0) {
+            s.append("(");
+            generateCombinations(s, left - 1, right + 1, v);
+            s = s.substr(0, s.length() - 1);
+        }
+        if (right > 0) {
+            s.append(")");
+            generateCombinations(s, left, right - 1, v);
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> v;
+        string s = "";
+        generateCombinations(s, n, 0, v);
+        return v;
+    }
+
     bool isWellFormed(string str) {
         stack<char> s;
         for (char c : str) {
@@ -28,7 +50,7 @@ public:
             swap(str[i], str[begin]);
         }
     }
-    vector<string> generateParenthesis(int n) {
+    vector<string> generateParenthesis_slow(int n) {
         vector<string> v;
         string str = "";
         for (int i = 0; i < n; i++) {
