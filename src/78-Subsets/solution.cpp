@@ -11,6 +11,7 @@ public:
         }
     }
     
+    // O(size of res) - Every recursive call pushes to res.
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> res;
         vector<int> v;
