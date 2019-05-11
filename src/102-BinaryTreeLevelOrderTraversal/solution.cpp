@@ -10,6 +10,10 @@
 
 class Solution {
 public:
+    // O(n) - We traverse through all the notes
+    // and intermediate operations are O(1).
+    // The solution is modified DF traversal with count
+    // to keep track of what level we're on.
     vector<vector<int>> levelOrder(TreeNode* root) {
         queue<TreeNode*> q;
         vector<vector<int>> res;
