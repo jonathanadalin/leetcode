@@ -1,32 +1,28 @@
 class Solution {
 public:
-    
-    vector<vector<int>> res;
-    
-    void populateRes(vector<int>& candidates, int sum_so_far, int index,
-                     vector<int> v, int target) {
-        if (index < candidates.size() && sum_so_far + candidates[index] <= target) {
-            if (sum_so_far + candidates[index] == target) {
+        
+    void populateRes(const vector<int>& candidates, int index,
+                     vector<int> v, int target, vector<vector<int>>& res) {
+        if (index < candidates.size() && candidates[index] <= target) {
+            if (candidates[index] == target) {
                 v.push_back(candidates[index]);
                 res.push_back(v);
             } else {
-                // Skip this one.
-                populateRes(candidates, sum_so_far, index + 1, v, target);  
+                // Go to the next value.
+                populateRes(candidates, index + 1, v, target, res);  
                 v.push_back(candidates[index]);
                 // We can use repeated numbers.
-                populateRes(candidates, sum_so_far + candidates[index],
-                            index, v, target);
+                populateRes(candidates, index, v, target - candidates[index], res);
             }
         }
     }
         
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
         vector<int> v;
         sort(candidates.begin(), candidates.end());
-        populateRes(candidates, 0, 0, v, target);
-        // No duplicates
-        sort(res.begin(), res.end());
-        res.erase(unique(res.begin(), res.end()), res.end());
+        populateRes(candidates, 0, v, target, res);
         return res;
     }
+    
 };
