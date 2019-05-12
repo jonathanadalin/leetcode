@@ -16,9 +16,6 @@ public:
                 // We can use repeated numbers.
                 populateRes(candidates, sum_so_far + candidates[index],
                             index, v, target);
-                // Take one of it.
-                populateRes(candidates, sum_so_far + candidates[index],
-                            index + 1, v, target);  
             }
         }
     }
