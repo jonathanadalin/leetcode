@@ -1,32 +1,5 @@
 class Solution {
     
-private:
-    
-    unordered_set<string> visited;
-    double dfs(const string &start, const string &finish,
-               const unordered_map<string,
-                                   vector<pair<string, double>>> &nodes) {
-        if (visited.find(start) == visited.end()) {
-            visited.insert(start);  // Don't check this start point again.
-            // We know it exists because of previous checks.
-            auto node_it = nodes.find(start);
-            for (auto weighted_path_pair : (*node_it).second) {
-                if (finish == weighted_path_pair.first) {
-                    return weighted_path_pair.second;
-                }
-            }
-            // It wasn't a direct connection, so recurse until we find it.
-            for (auto weighted_path_pair : (*node_it).second) {
-                double val = dfs(weighted_path_pair.first, finish, nodes);
-                if (val > 0) {
-                    // We need to update the weight.
-                    return weighted_path_pair.second * val;
-                }
-            }
-        }
-        return -1;  // No paths found.
-    }
-    
 public:
     
     /* 
@@ -74,9 +47,37 @@ public:
                 res.push_back(1);   // Division by oneself.
             } else {
                 visited.clear();
-                res.push_back(dfs(query[0], query[1], nodes));
+                res.push_back(bfs(query[0], query[1], nodes));
             }
         }
         return res;
     }
+    
+private:
+    
+    unordered_set<string> visited;
+    double bfs(const string &start, const string &finish,
+               const unordered_map<string,
+                                   vector<pair<string, double>>> &nodes) {
+        if (visited.find(start) == visited.end()) {
+            visited.insert(start);  // Don't check this start point again.
+            // We know it exists because of previous checks.
+            auto node_it = nodes.find(start);
+            for (auto weighted_path_pair : (*node_it).second) {
+                if (finish == weighted_path_pair.first) {
+                    return weighted_path_pair.second;
+                }
+            }
+            // It wasn't a direct connection, so recurse until we find it.
+            for (auto weighted_path_pair : (*node_it).second) {
+                double val = bfs(weighted_path_pair.first, finish, nodes);
+                if (val > 0) {
+                    // We need to update the weight.
+                    return weighted_path_pair.second * val;
+                }
+            }
+        }
+        return -1;  // No paths found.
+    }
+    
 };
