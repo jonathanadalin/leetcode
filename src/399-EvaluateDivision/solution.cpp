@@ -2,8 +2,22 @@ class Solution {
     
 private:
     
-    double dfs() {
-        return -1;
+    double dfs(const string &start, const string &finish,
+               const unordered_map<string,
+                                   vector<pair<string, double>>> &nodes) {
+        // We know it exists because of previous checks.
+        auto node_it = nodes.find(start);
+        for (auto weighted_path_pair : (*node_it).second) {
+            if (finish == weighted_path_pair.first) {
+                return weighted_path_pair.second;
+            }
+        }
+        // It wasn't a direct connection, so recurse until we find it.
+        for (auto weighted_path_pair : (*node_it).second) {
+            return weighted_path_pair.second *
+                   dfs(weighted_path_pair.first, finish, nodes);
+        }
+        return -1;  // It should never get here.
     }
     
 public:
@@ -16,8 +30,8 @@ public:
             eg.
             A / B = k
             will be represented with two paths:
-            A -> 1/k -> B
-            B ->  k  -> A
+            A -> k   -> B
+            B -> 1/k -> A
      */
     
     vector<double> calcEquation(vector<vector<string>>& equations,
@@ -33,14 +47,14 @@ public:
                 nodes.insert(make_pair(equations[i][0], empty));
             }
             nodes[equations[i][0]].push_back(make_pair(equations[i][1],
-                                                       1 / values[i]));
+                                                       values[i]));
             // Do the same for the path B -> A with weight k
             if (nodes.find(equations[i][1]) == nodes.end()) {
                 vector<pair<string, double>> empty;
                 nodes.insert(make_pair(equations[i][1], empty));
             }
             nodes[equations[i][1]].push_back(make_pair(equations[i][0],
-                                                       values[i]));
+                                                       1 / values[i]));
         }
         
         // Determine if path exists and fill <res> accordingly.
@@ -52,7 +66,7 @@ public:
             } else if (query[0] == query[1]) {
                 res.push_back(1);   // Division by oneself.
             } else {
-                res.push_back(0);   // TODO
+                res.push_back(dfs(query[0], query[1], nodes));   // TODO
             }
         }
         return res;
