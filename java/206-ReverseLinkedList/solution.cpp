@@ -20,19 +20,21 @@ class Solution {
             return head;
         }
         var list = new ArrayList<ListNode>();
-        var node = head;
-        while (node != null) {
-            list.add(node);
-            node = node.next;
+        while (head != null) {
+            list.add(head);
+            head = head.next;
         }
+        // Build the inverse list.
         for (var i = 0; i < list.size(); i++) {
-            node = list.get(i);
+            head = list.get(i);
             if (i == 0) {
-                node.next = null;
+                head.next = null;
             } else {
-                node.next = list.get(i - 1);
+                head.next = list.get(i - 1);
             }
         }
+        // The tail of the list is the head of the inverse list.
         return list.get(list.size() - 1);
     }
 }
+
