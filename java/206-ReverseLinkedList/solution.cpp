@@ -9,7 +9,8 @@
  * }
  */
 
- // This is pretty slow O(n^2), but it's a start...
+// Runtime is O(2n), one pass to build the array list, then a pass of that
+// list to build the reverse list.
 class Solution {
     public ListNode reverseList(ListNode head) {
         if (head == null) {
@@ -18,12 +19,20 @@ class Solution {
         if (head.next == null) {
             return head;
         }
+        var list = new ArrayList<ListNode>();
         var node = head;
-        while (node.next != null && node.next.next != null) {
+        while (node != null) {
+            list.add(node);
             node = node.next;
         }
-        var val = node.next.val;
-        node.next = null;
-        return new ListNode(val, reverseList(head));
+        for (var i = 0; i < list.size(); i++) {
+            node = list.get(i);
+            if (i == 0) {
+                node.next = null;
+            } else {
+                node.next = list.get(i - 1);
+            }
+        }
+        return list.get(list.size() - 1);
     }
 }
