@@ -5,17 +5,10 @@
 
 class Solution {
     public int singleNumber(int[] nums) {
-        var set = new HashSet<Integer>();
         var val = 0;
-        // This approach can overflow.
         for (var num : nums) {
-            if (set.contains(num)) {
-                set.remove(num);
-                val -= num;
-            } else {
-                set.add(num);
-                val += num;
-            }
+            // XOR returns true iff the operands are different.
+            val ^= num;
         }
         return val;
     }
