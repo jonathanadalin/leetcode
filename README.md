@@ -1,1 +1,1 @@
-This repo contains my [leetcode](https://leetcode.com/) solutions and notes.
+This repo contains my [LeetCode](https://leetcode.com/) solutions and notes.
