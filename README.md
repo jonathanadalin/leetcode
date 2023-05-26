@@ -1,5 +1,1 @@
-# Leetcode Solutions and Drivers
-
-This repository contains my leetcode attempts as well as some drivers I used to verify them.
-
-
+This repo contains my [leetcode](https://leetcode.com/) solutions and notes.
