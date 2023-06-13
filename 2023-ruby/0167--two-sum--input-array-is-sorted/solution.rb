@@ -2,26 +2,24 @@
 # @param {Integer} target
 # @return {Integer[]}
 
+# Idea: Use two pointers so we only need to make a single pass
 # Category: Two pointers
-# Runtime: O(n^2) - yikes
+# Runtime: O(n)
 def two_sum(numbers, target)
-    i = 0
-    j = 1
-    while i < numbers.length - 1
-        if j == numbers.length
-            i += 1
-            j = i + 1
-        elsif numbers[i] + numbers[j] == target
-            return [i + 1, j + 1]
-        elsif numbers[i] == numbers[j]
-            i += 1
-            j += 1
-        elsif numbers[i] + numbers[j] > target
-            i += 1
-            j = i + 1
-        else j < numbers.length - 1
-            j += 1
+    left = 0
+    right = numbers.length - 1
+    while left < right
+        sum = numbers[left] + numbers[right]
+        if sum < target
+            left += 1
+            next
         end
-    end
+        if sum > target
+            right -= 1
+            next
+        end
+        # sum == target
+        return [left + 1, right + 1]
+    end      
 end
 
