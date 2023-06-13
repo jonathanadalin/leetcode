@@ -1,6 +1,9 @@
 # @param {Integer[]} numbers
 # @param {Integer} target
 # @return {Integer[]}
+
+# Category: Two pointers
+# Runtime: O(n^2) - yikes
 def two_sum(numbers, target)
     i = 0
     j = 1
