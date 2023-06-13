@@ -4,6 +4,7 @@
 # Category: Stack
 # Runtime: O(n)
 # Notes: In Ruby, we can use an array to represent the stack.
+#        Push and pop operations are O(1).
 def is_valid(s)
     return true if s.length == 0
     return false if s.length % 2 == 1
