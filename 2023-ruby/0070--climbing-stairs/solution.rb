@@ -24,6 +24,7 @@ def climb_stairs_memoize(n)
     map[1] = 1
     map[2] = 2
 
+    # We use a for loop instead of recursion now.
     for i in 3..n
         map[i] = map[i - 1] + map[i - 2]
     end
@@ -39,12 +40,13 @@ def climb_stairs(n)
     return steps_minus_2 if n == 1
     return steps_minus_1 if n == 2
 
+    # We still use a for loop.
     current_step = 0
     for i in 3..n
         current_steps = steps_minus_1 + steps_minus_2
         
-        # Anticipate for next iteration because we no longer
-        # have the luxury of storing our results.
+        # We must anticipate for the next iteration because we 
+        # no longer have the luxury of storing our results.
         steps_minus_2 = steps_minus_1
         steps_minus_1 = current_steps
     end
