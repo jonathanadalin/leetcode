@@ -3,6 +3,8 @@
 
 # Category: Intervals
 # Runtime: O(n log n)
+# Notes: Key elements here are starting a array to build the result and sorting
+#        with sort_by.
 def merge(intervals)
     return intervals if intervals.length <= 1
 
