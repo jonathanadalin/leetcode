@@ -18,7 +18,7 @@ end
 # Step 2: Come up with memoize optimization.
 def climb_stairs_memoize(n)
     # Use a map to save from recalculating in recursion.
-    # The initial map values are the base case from step 1.
+    # The initial map values are the base case values from step 1.
     map = {}
     map[0] = 0
     map[1] = 1
