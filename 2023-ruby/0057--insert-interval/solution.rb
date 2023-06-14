@@ -1,37 +1,30 @@
 # @param {Integer[][]} intervals
 # @param {Integer[]} new_interval
 # @return {Integer[][]}
+
+# Category: Intervals
+# Runtime: O(n) - Single pass with O(1) operations
 def insert(intervals, new_interval)
     i = 0
-    # Just insert it for now
-    # O(n)
-    if intervals.empty?
-        intervals.push(new_interval)
-    else
-        while i <= intervals.length
-            if intervals[i].first > new_interval.first
-                intervals.insert(i, new_interval)
-                break
-            end
-            if i == intervals.length - 1
-                intervals.insert(intervals.length, new_interval)
-                break
-            end
-            i += 1
-        end
+    result = []
+    # The result should match the original intervals until the new interval is relevant
+    while(i < intervals.size && intervals[i].last < new_interval.first)
+        result.push(intervals[i])
+        i += 1
     end
-
-    # Now merge
-    # O(n^2) - yikes
-    i = 0
-    while i < intervals.length - 1
-        if intervals[i].last >= intervals[i + 1].first
-            intervals[i][1] = [intervals[i].last, intervals[i + 1].last].max
-            intervals.delete_at(i + 1) # O(n)
-        else
-            i += 1
-        end
+    # Build the new interval then add it
+    first, last = 0, 0
+    while(i < intervals.size && intervals[i].first <= new_interval.last)
+        new_interval[0] = [intervals[i].first, new_interval.first].min
+        new_interval[1] = [intervals[i].last, new_interval.last].max
+        i += 1
     end
-    return intervals
+    result.push(new_interval)
+    # Just add the rest
+    while(i < intervals.size)
+        result.push(intervals[i])
+        i += 1
+    end
+    return result
 end
 
