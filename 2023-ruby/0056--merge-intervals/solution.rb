@@ -17,11 +17,14 @@ def merge(intervals)
     # O(n)
     while j < intervals.length
         if intervals[i].last < intervals[j].first
+            # No overlap, just just add the element to the result.
             res.push(intervals[i])  # O(1)
             i += 1
             j += 1
         else
-            # Merge logic
+            # Merge viable intervals and add them to the result.
+            # We must consider the growing interval by growing the right
+            # boundary of the interval.
             right = intervals[i].last
             while j < intervals.length && right >= intervals[j].first
                 right = [right, intervals[j].last].max
@@ -32,11 +35,8 @@ def merge(intervals)
             j += 1
         end
     end
-    # Add remaining in O(n)
-    while i < j && i < intervals.length
-        res.push(intervals[i])  # O(1)
-        i += 1
-    end
+    # We should check for a remaining interval since i = j - 1
+    res.push(intervals[i]) if i < intervals.length  # O(1)
     return res
 end
 
