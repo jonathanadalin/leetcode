@@ -20,3 +20,28 @@ def max_depth(root)
     return depth
 end
 
+# Runtime: O(n)
+def max_depth_with_array(root)
+    return 0 unless root
+
+    nodes = []
+    depths = []
+    nodes.push(root)
+    depths.push(1)
+    max = 0
+    while !nodes.empty?
+        node = nodes.pop
+        depth = depths.pop
+        max = [max, depth].max
+        if node.left
+            nodes.push(node.left)
+            depths.push(depth + 1)
+        end
+        if node.right
+            nodes.push(node.right)
+            depths.push(depth + 1)
+        end
+    end
+    return max
+end
+
