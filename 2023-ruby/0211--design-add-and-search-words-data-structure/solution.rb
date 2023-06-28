@@ -1,3 +1,8 @@
+# Disclaimer: This runs into a TLE despite running successfully in Java.
+#
+# See
+# https://leetcode.com/problems/design-add-and-search-words-data-structure/solutions/59554/my-simple-and-clean-java-code/
+
 class TrieNode
     def initialize()
         @children = Array.new(26)
