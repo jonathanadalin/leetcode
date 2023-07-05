@@ -10,17 +10,20 @@
 # @param {TreeNode} root
 # @return {Boolean}
 # Category: Trees
-# Runtime: O(N^2)
-# Notes: We can probably improve if we didn't recalculate height every time
+# Runtime: O(N)
 def is_balanced(root)
     return true if root == nil
-    return false if (height(root.left) - height(root.right)).abs > 1
-    return false if is_balanced(root.left) == false || is_balanced(root.right) == false
+    return false if dfs_height(root) == -1
     return true
 end
 
-def height(node)
+def dfs_height(node)
     return 0 if node == nil
-    return 1 + [height(node.left), height(node.right)].max
+    left = dfs_height(node.left)
+    right = dfs_height(node.right)
+    return -1 if left == -1
+    return -1 if right == -1
+    return -1 if (left - right).abs  > 1
+    return [left, right].max + 1
 end
 
