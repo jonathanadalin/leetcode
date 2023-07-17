@@ -2,14 +2,32 @@
 Category: Arrays & Hashing
 Idea:     The product of all elements except nums[i] is the same as multiplying
           the product of the elements preceding i and the product of elements 
-          after i. We can calculate each in O(N).
-          TODO: To save on memory, we can store those products in the resulting 
-          array.
+          after i. We can calculate each in O(N). To save on memory, we can
+          store those products in the resulting array.
 Runtime:  O(N) where N is the size of nums
 """
 
 class Solution:
+
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        result = [1] * len(nums)
+        for i in range(len(nums)):
+            if i == 0:
+                prefix = nums[i]
+                result[i] = 1
+            else:
+                result[i] *= prefix
+                prefix *= nums[i]
+        for i in range(len(nums) - 1, -1, -1):
+            if i == len(nums) - 1:
+                postfix = nums[i]
+                continue
+            else:
+                result[i] *= postfix
+                postfix *= nums[i]
+        return result
+
+    def productExceptSelfOld(self, nums: List[int]) -> List[int]:
         prefixes = [1] * len(nums)
         for i in range(len(nums)):
             if i == 0:
