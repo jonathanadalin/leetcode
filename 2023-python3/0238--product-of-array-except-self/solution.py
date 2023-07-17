@@ -10,18 +10,17 @@ Runtime:  O(N) where N is the size of nums
 class Solution:
 
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        result = [1] * len(nums)
+        result = []
         for i in range(len(nums)):
             if i == 0:
                 prefix = nums[i]
-                result[i] = 1
+                result.append(1)
             else:
-                result[i] *= prefix
+                result.append(prefix)
                 prefix *= nums[i]
         for i in range(len(nums) - 1, -1, -1):
             if i == len(nums) - 1:
                 postfix = nums[i]
-                continue
             else:
                 result[i] *= postfix
                 postfix *= nums[i]
