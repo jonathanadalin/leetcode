@@ -7,9 +7,10 @@
 
 """
 Category: Trees
-Idea:     Traverse the tree and if either p or q match the current node, then the LCA is the node.
-          If p or q are on opposite branches of the current node, the LCA is the node.
-          Else, they are on the same subbranch, and we should traverse that subbranch.
+Idea:     Traverse the tree and if either p or q match the current node, then 
+          the LCA is the node. If p or q are on opposite branches of the 
+          current node, the LCA is the node. Else, they are on the same 
+          sub-branch, and we should traverse that sub-branch.
 Runtime:  O(log N) - we only traverse at most the height of the tree.
 """
 class Solution:
