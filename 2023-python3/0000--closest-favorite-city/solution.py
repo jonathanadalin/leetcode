@@ -1,7 +1,7 @@
 import heapq
 
 class City:
-    def __init__(self, name: str, neighbors: list[tuple[str, int]]) -> None:
+    def __init__(self, name: str, neighbors: list[tuple["City", int]]) -> None:
         self.name = name
         self.neighbors = neighbors
 
