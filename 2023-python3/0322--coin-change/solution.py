@@ -14,14 +14,15 @@ class Solution:
         for coin in coins:
             if coin <= amount:
                 dp[coin] = 1
-
-        for curr_amount in range(amount + 1):
+        
+        for curr in range(amount + 1):
             for coin in coins:
-                if curr_amount - coin > 0 and dp[curr_amount - coin] != -1:
-                    if dp[curr_amount] == -1:
-                        dp[curr_amount] = 1 + dp[curr_amount - coin]
+                before = curr - coin
+                if before >= 0 and dp[before] != -1:
+                    if dp[curr] == -1:
+                        dp[curr] = 1 + dp[before]
                     else:
-                        # Priotize less coins
-                        dp[curr_amount] = min(dp[curr_amount], 1 + dp[curr_amount - coin])
-
+                        dp[curr] = min(dp[curr], 1 + dp[before])
+        
         return dp[amount]
+
