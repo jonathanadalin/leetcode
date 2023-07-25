@@ -1,9 +1,11 @@
 """
-Idea: Build the adjacency graph traversing the graph with a set
-      to keep track of visited nodes.
-      Build a new graph using the adjacency graph.
-Time: O(n^2) - Number of nodes * number of neighbors
-Space: O(n^2)
+Idea: Use a hashmap to track the old to new mapping.
+      Traverse the old graph with DFS returning if there is already
+      a key for that node in the hashmap. If not, add a new node
+      and its neighbors. When adding neighbors, recursively call the
+      DFS function so the newly created node is added.
+Time: O(V + E) where V and E are the number of vertices and edges.
+Space: O(V + E)
 """
 
 """
@@ -16,39 +18,19 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
-
-        # Build the adjacency graph
-        stack = []
-        adj_map = {}
-        traversed = set()
-        def traverse(node: 'Node') -> 'Node':
-            if not node:
-                return 
-            if node.val not in adj_map:
-                adj_map[node.val] = set()
-            for neighbor in node.neighbors:
-                adj_map[node.val].add(neighbor.val)
-                if neighbor.val not in traversed:
-                    stack.append(neighbor)
-            traversed.add(node.val)
-            if len(stack) > 0:
-                traverse(stack.pop())
-        traverse(node)
-        
-        # Build the new graph from the adjacency graph
-        if len(adj_map) == 0:
+        if not node:
             return None
-        new_nodes = {}
-        first = 0
-        for k in adj_map.keys():
-            if len(new_nodes) == 0:
-                first = k
-            new_nodes[k] = Node(k)
 
-        for k, v in adj_map.items():
-            new_nodes[k].neighbors = []
-            for neighbor in v:
-                new_nodes[k].neighbors.append(new_nodes[neighbor])
-
-        return new_nodes[first]
-
+        old_to_new = {}
+        def dfs(node):
+            if node in old_to_new:
+                return old_to_new[node]
+            
+            curr = Node(node.val)
+            old_to_new[node] = curr
+            for nei in node.neighbors:
+                curr.neighbors.append(dfs(nei))
+            return curr
+        
+        return dfs(node)
+    
